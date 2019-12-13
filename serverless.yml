@@ -1,4 +1,3 @@
-org: 372476388
 app: s3triggerddb-app
 service: s3triggerddb
 provider:
@@ -6,6 +5,12 @@ provider:
   runtime: python3.8
   memorySize: 256
   timeout: 10
+  iamRoleStatements:
+    - Effect: Allow
+      Action:
+        - dynamodb:GetItem
+        - dynamodb:PutItem  
+      Resource: 'arn:aws:dynamodb:us-east-1:*:*'
 
 functions:
   hello:
@@ -18,7 +23,6 @@ functions:
             - prefix: uploads/
             - suffix: .jpg
           existing: true
-
 
 resources: # CloudFormation template syntax
   Resources:

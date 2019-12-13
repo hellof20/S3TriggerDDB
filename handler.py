@@ -1,7 +1,7 @@
 import boto3
 
 dynamodb = boto3.resource('dynamodb', region_name='us-east-1')
-ddb_table = dynamodb.Table('usersTable')
+ddb_table = dynamodb.Table('s3-object-put')
 
 def trigger(event, context):
     for record in event['Records']:
